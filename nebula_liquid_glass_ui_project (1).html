@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nebula Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/tone@14.7.77/build/Tone.js"></script>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000;
+      overflow: hidden;
+      font-family: Arial;
+      color: white;
+    }
+
+    .center {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* NEW CONTENT BOX */
+    .content-box {
+      margin-top: 20px;
+      width: 500px;
+      padding: 20px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      text-align: left;
+    }
+
+    .content-box img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    .dock {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      padding: 15px 25px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+    }
+
+    .dock button {
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="center">
+  
+
+  <!-- EDIT THIS BOX -->
+  <div class="content-box">
+  <h1>       Mase Hellerud</h1>
+  <p>    Welcome to my space ✨</p>
+
+    <h3>About Me</h3>
+  <p>
+Hi, I’m a 6th grader at Unbound Academy who’s really into tech and building cool things. I like to think of myself as smart, but I’m also always learning new stuff and improving every day. I’m super friendly, easy to talk to, and I enjoy helping people out whenever I can.
+</p>
+
+<p>
+One of my favorite things to do is code. I’ve been learning how websites work, how to design them, and how to make them look clean and interactive. I also know how to build computers, which is something I think is really fun—picking parts, putting everything together, and seeing it all work at the end is awesome.
+</p>
+
+<p>
+Outside of that, I like experimenting with new tech, creating projects, and just messing around with ideas to see what I can make. This site is part of that—just a place where I can show what I’m working on and keep improving my skills.
+</p>
+
+<p>
+Thanks for checking out my page :3 
+</p>
+
+    <p>*Warning To Cool For School</p>
+  </div>
+</div>
+
+<div class="dock">
+  <button onclick="toggleMusic()">🎵 Music</button>
+</div>
+
+<script>
+let synth = new Tone.PolySynth(Tone.Synth).toDestination();
+let playing = false;
+let loop;
+
+function playLofi() {
+  const chords = [
+    ["C3","Eb3","G3"],
+    ["Bb2","D3","F3"],
+    ["G2","Bb2","D3"],
+    ["F2","Ab2","C3"]
+  ];
+
+  let i = 0;
+
+  loop = new Tone.Loop(time => {
+    synth.triggerAttackRelease(chords[i % chords.length], "2n", time);
+    i++;
+  }, "2n").start(0);
+
+  Tone.Transport.start();
+}
+
+function toggleMusic() {
+  if (!playing) {
+    Tone.start();
+    playLofi();
+    playing = true;
+  } else {
+    Tone.Transport.stop();
+    playing = false;
+  }
+}
+</script>
+
+</body>
+</html>
+
+<!-- ============================
+HOW TO EDIT CONTENT BOX
+============================
+
+ADD TEXT:
+<p>Your text here</p>
+
+ADD IMAGE:
+<img src="your-image-link-here" />
+
+ADD LINK:
+<a href="https://example.com">Click me</a>
+
+ADD MORE SECTIONS:
+Copy this:
+<h3>New Section</h3>
+<p>Text here</p>
+
+============================ -->
+
